@@ -3,6 +3,7 @@
 import styles from "./page.module.css";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_ORDERS } from "@/integrations/get-all-orders";
+import { createOrder } from "@/integrations/create-order";
 
 export default function Home() {
   const { data, loading, error } = useQuery<any>(GET_ALL_ORDERS, {
@@ -14,5 +15,17 @@ export default function Home() {
 
   console.log("Orders Data:", data);
 
-  return <div className={styles.page}>Pedidos</div>;
+  async function handleSubmit() {
+    try {
+      await createOrder({});
+    } catch (err) {
+      console.log("error submit ", err);
+    }
+  }
+
+  return (
+    <div className={styles.page}>
+      Pedidos <button onClick={handleSubmit}>Criar pedido</button>
+    </div>
+  );
 }
