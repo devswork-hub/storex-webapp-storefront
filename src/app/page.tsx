@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_ORDERS } from "@/integrations/get-all-orders";
 import { createOrder } from "@/integrations/create-order";
+import { SplitText } from "gsap/all";
 
 export default function Home() {
   const { data, loading, error } = useQuery<any>(GET_ALL_ORDERS, {
@@ -23,8 +24,12 @@ export default function Home() {
     }
   }
 
+  // LIB pra ficar de olho
+  // https://skiper-ui.com/docs/components/expanded-tabs
+
   return (
     <div className={styles.page}>
+      <SplitText>Text animado, da lib de animacoes de texto</SplitText>
       Pedidos <button onClick={handleSubmit}>Criar pedido</button>
     </div>
   );
